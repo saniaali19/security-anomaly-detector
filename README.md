@@ -52,7 +52,7 @@ Each user's very first login has no prior login to compare against, so `minutes_
 ## Setup
 
 ```bash
-git clone 
+git clone https://github.com/saniaali19/security-anomaly-detector.git
 cd security-anomaly-detector
 python3 -m venv venv
 source venv/bin/activate
