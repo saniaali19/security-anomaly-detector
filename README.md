@@ -43,7 +43,7 @@ Each user's very first login has no prior login to compare against, so `minutes_
 
 **False positives are a real tradeoff, not eliminated.** Loosening the model's `contamination` threshold from 0.01 to 0.03 was necessary to catch the subtler off-hours login pattern, but it also flags a handful of genuinely normal logins alongside the true anomalies. This mirrors a real SOC tradeoff: a stricter threshold misses subtle attacks, a looser one increases analyst workload from false alerts. Tuning this in production would require real labeled incident data and likely a cost-weighted approach rather than a fixed percentage.
 
-**Synthetic data, not production traffic.** All logs are generated, not real. This was a deliberate choice for a portfolio project: it provides ground truth to validate against, which real unlabeled production data would not. The detection logic and feature engineering approach would carry over to real data, but thresholds and specific feature definitions would need returning against actual traffic patterns.
+**Synthetic data, not production traffic.** All logs are generated, not real. This was a deliberate choice for a portfolio project: it provides ground truth to validate against, which real unlabeled production data would not. The detection logic and feature engineering approach would carry over to real data, but thresholds and specific feature definitions would need retuning against actual traffic patterns.
 
 **No feedback loop.** A production version would need a way for analyst decisions (real attack vs. false positive) to feed back into the model over time, which this project does not implement.
 
@@ -74,7 +74,7 @@ python src/generate_logs.py   # generates data/auth_logs.csv
 python src/features.py        # generates data/auth_logs_features.csv
 python src/detect.py          # trains model, prints flagged events
 python src/explain.py         # generates AI explanations for top flagged events
-
+```
 
 ## Example output 
 
